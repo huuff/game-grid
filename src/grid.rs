@@ -9,5 +9,9 @@ pub mod grid {
               internal_grid: [[initial_value; SIZE]; SIZE]  
             }
         }
+
+        pub fn get(&self, (x, y): (usize, usize)) -> Option<&T> {
+            self.internal_grid.get(y)?.get(x)
+        }
     }
 }
