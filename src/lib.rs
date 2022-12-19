@@ -19,4 +19,13 @@ mod tests {
         grid.set((2,2), 3u8);
         assert_eq!(*grid.get((2,2)).unwrap(), 3u8);
     }
+
+    #[test]
+    fn prints_correctly() {
+        let mut grid: Grid<char, 3> = Grid::new('O');
+
+        grid.set((1,1), 'X');
+
+        println!("\n{}\n", grid.to_str());
+    }
 }

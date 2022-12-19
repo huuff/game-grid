@@ -1,4 +1,6 @@
 pub mod grid {
+    use std::fmt::Display;
+
     pub struct Grid<T: Sized + Copy, const SIZE: usize> {
         internal_grid: [[T; SIZE]; SIZE],
     }
@@ -16,6 +18,20 @@ pub mod grid {
 
         pub fn set(&mut self, (x, y): (usize, usize), value: T) {
             self.internal_grid[y][x] = value;
+        }
+    }
+
+    impl<T: Display + Copy, const SIZE: usize> Grid<T, SIZE> {
+        pub fn to_str(&self) -> String {
+            let mut result = String::new();
+
+            for row in self.internal_grid {
+                for cell in row {
+                    result.push_str(&cell.to_string());
+                }
+                result.push('\n');
+            }
+            result
         }
     }
 }
