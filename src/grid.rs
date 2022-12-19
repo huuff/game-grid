@@ -13,5 +13,9 @@ pub mod grid {
         pub fn get(&self, (x, y): (usize, usize)) -> Option<&T> {
             self.internal_grid.get(y)?.get(x)
         }
+
+        pub fn set(&mut self, (x, y): (usize, usize), value: T) {
+            self.internal_grid[y][x] = value;
+        }
     }
 }
