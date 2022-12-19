@@ -21,13 +21,23 @@ pub mod grid {
         }
     }
 
-    impl<T: Display + Copy, const SIZE: usize> Grid<T, SIZE> {
+    pub trait CharRepresentable {
+        fn to_char(&self) -> char;
+    }
+
+    impl CharRepresentable for char {
+        fn to_char(&self) -> char {
+            self.clone()
+        }
+    }
+
+    impl<T: CharRepresentable + Copy, const SIZE: usize> Grid<T, SIZE> {
         pub fn to_str(&self) -> String {
             let mut result = String::new();
 
             for row in self.internal_grid {
                 for cell in row {
-                    result.push_str(&cell.to_string());
+                    result.push(cell.to_char());
                 }
                 result.push('\n');
             }
