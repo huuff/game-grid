@@ -1,5 +1,5 @@
 pub mod grid {
-    use std::fmt::Display;
+    use std::{fmt::Display, ops::Index};
 
     pub struct Grid<T: Sized + Copy, const SIZE: usize> {
         internal_grid: [[T; SIZE]; SIZE],
@@ -42,6 +42,14 @@ pub mod grid {
                 result.push('\n');
             }
             result
+        }
+    }
+
+    impl<T: Sized + Copy, const SIZE: usize> Index<(usize, usize)> for Grid<T, SIZE> {
+        type Output = T;
+
+        fn index(&self, (x, y): (usize, usize)) -> &Self::Output {
+            &self.internal_grid[y][x]
         }
     }
 }

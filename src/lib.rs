@@ -21,11 +21,20 @@ mod tests {
     }
 
     #[test]
+    // TODO: There's no assert here
     fn prints_correctly() {
         let mut grid: Grid<char, 3> = Grid::new('O');
 
         grid.set((1,1), 'X');
 
         println!("\n{}\n", grid.to_str());
+    }
+
+    #[test]
+    fn indexing_operator() {
+        let mut grid: Grid<char, 3> = Grid::new('O');
+
+        grid.set((1,1), 'X');
+        assert_eq!(grid[(1,1)], 'X');
     }
 }
